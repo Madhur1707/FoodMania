@@ -7,10 +7,11 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {  useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -66,6 +67,7 @@ const UserProfileForm = ({ onSave, isLoading }: Props) => {
               <FormControl>
                 <Input {...field} className="bg-white" />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -80,6 +82,7 @@ const UserProfileForm = ({ onSave, isLoading }: Props) => {
                 <FormControl>
                   <Input {...field} className="bg-white" />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -92,6 +95,7 @@ const UserProfileForm = ({ onSave, isLoading }: Props) => {
                 <FormControl>
                   <Input {...field} className="bg-white" />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
@@ -104,6 +108,7 @@ const UserProfileForm = ({ onSave, isLoading }: Props) => {
                 <FormControl>
                   <Input {...field} className="bg-white" />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
