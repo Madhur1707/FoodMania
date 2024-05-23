@@ -69,7 +69,7 @@ export const useUpdateMyUser = () => {
     isLoading,
     isSuccess,
     error,
-    reset,
+    // reset,
   } = useMutation(updateMyUserRequest);
 
   if (isSuccess) {
