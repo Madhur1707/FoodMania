@@ -36,4 +36,15 @@ export const validateMyRestaurantRequest = [
   body("estimatedDeliveryTime")
     .isInt({ min: 0 })
     .withMessage("Estimated Delivery Time must be a positive number"),
+  body("cuisines")
+    .isArray()
+    .withMessage("cuisines must be an array")
+    .not()
+    .isEmpty()
+    .withMessage("cuisines array cannot be empty"),
+  body("menuItems").isArray().withMessage("menuItems must be an array"),
+  body("menuItems.*.name").notEmpty().withMessage("menu item name is required"),
+  body("menuItems.*.price")
+    .isFloat({ min: 0 })
+    .withMessage("menu item price is required and must be a poditive number"),
 ];
