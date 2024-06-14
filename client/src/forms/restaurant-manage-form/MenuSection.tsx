@@ -13,7 +13,7 @@ const MenuSection = () => {
   return (
     <div className="space-y-2">
       <div>
-        <h2 className="text-2xl font-bold"> Menu </h2>
+        <h2 className="text-2xl font-bold"> Cuisines </h2>
         <FormDescription>
           Select the menu that your restaurant serves
         </FormDescription>
