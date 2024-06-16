@@ -6,6 +6,9 @@ import DetailsSection from "./DetailsSection";
 import { Separator } from "@/components/ui/separator";
 import MenuSection from "./MenuSection";
 import AddMenuItems from "./AddMenuItems";
+import ImageUpload from "./ImageUpload";
+import LoadingButton from "@/components/LoadingButton";
+import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
   restaurantName: z.string({
@@ -55,7 +58,28 @@ function RestaurantManageForm({ onSave, isLoading }: Props) {
     },
   });
 
-  const onSubmit = (formDataJson: restaurantFormData) => {};
+  const onSubmit = (formDataJson: restaurantFormData) => {
+    const formData = new FormData();
+
+    formData.append("restaurantName", formDataJson.restaurantName);
+    formData.append("city", formDataJson.city);
+    formData.append("country", formDataJson.country);
+    formData.append("deliveryPrice", formDataJson.deliveryPrice.toString());
+    formData.append(
+      "estimatedDeliveryTime",
+      formDataJson.estimatedDeliveryTime.toString()
+    );
+    formDataJson.cuisines.forEach((cuisine, index) => {
+      formData.append(`cuisines[${index}]`, cuisine);
+    });
+    formDataJson.menuItems.forEach((menuItem, index) => {
+      formData.append(`menuItems[${index}][name]`, menuItem.name);
+      formData.append(`menuItems[${index}][price]`, menuItem.price.toString());
+    });
+    formData.append(`imageFile`, formDataJson.imageFile);
+
+    onSave(formData);
+  };
 
   return (
     <Form {...form}>
@@ -68,6 +92,9 @@ function RestaurantManageForm({ onSave, isLoading }: Props) {
         <MenuSection />
         <Separator />
         <AddMenuItems />
+        <Separator />
+        <ImageUpload />
+        {isLoading ? <LoadingButton /> : <Button type="submit">Submit</Button>}
       </form>
     </Form>
   );
