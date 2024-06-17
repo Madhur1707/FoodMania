@@ -9,6 +9,8 @@ import AddMenuItems from "./AddMenuItems";
 import ImageUpload from "./ImageUpload";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
+import { Restaurant } from "@/types";
 
 const formSchema = z.object({
   restaurantName: z.string({
@@ -45,11 +47,12 @@ const formSchema = z.object({
 type restaurantFormData = z.infer<typeof formSchema>;
 
 type Props = {
+  restaurant?: Restaurant;
   onSave: (restaurantFormData: FormData) => void;
   isLoading: boolean;
 };
 
-function RestaurantManageForm({ onSave, isLoading }: Props) {
+function RestaurantManageForm({ onSave, isLoading, restaurant }: Props) {
   const form = useForm<restaurantFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,6 +60,29 @@ function RestaurantManageForm({ onSave, isLoading }: Props) {
       menuItems: [{ name: "", price: 0 }],
     },
   });
+
+  useEffect(() => {
+    if (!restaurant) {
+      return;
+    }
+
+    const deliveryPriceFormatted = parseInt(
+      restaurant.deliveryPrice.toString()
+    );
+
+    const menuItemsFormatted = restaurant.menuItems.map((item) => ({
+      ...item,
+      price: parseInt(item.price.toString()),
+    }));
+
+    const updatedRestaurant = {
+      ...restaurant,
+      deliveryPrice: deliveryPriceFormatted,
+      menuItems: menuItemsFormatted,
+    };
+
+    form.reset(updatedRestaurant);
+  }, [form, restaurant]);
 
   const onSubmit = (formDataJson: restaurantFormData) => {
     const formData = new FormData();
