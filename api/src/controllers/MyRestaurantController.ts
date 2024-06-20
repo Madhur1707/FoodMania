@@ -42,7 +42,7 @@ const searchRestaurants = async (req: Request, res: Response) => {
       ];
     }
 
-    const pageSize = 10;
+    const pageSize = 5;
     const skip = (page - 1) * pageSize;
 
     const restaurants = await Restaurant.find(query)
