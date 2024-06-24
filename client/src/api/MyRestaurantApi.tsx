@@ -11,6 +11,7 @@ export const useSearchRestaurants = (
   const params = new URLSearchParams();
   params.set("searchQuery", searchState.searchQuery);
   params.set("page", searchState.page.toString());
+  params.set("selectedCuisines", searchState.selectedCuisines.join(","));
 
   const createSearchRequest = async (): Promise<RestaurantSearchResponse> => {
     const response = await fetch(
