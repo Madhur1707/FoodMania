@@ -20,6 +20,7 @@ const HomePage = () => {
           Delicious Deliveries at Your DoorStep!
         </h1>
         <span className="text-xl">Hungry ? Same... Order Now 😋 </span>
+        <span className="text-2xl"> Search Delhi for Getting Results...</span>
         <SearchBar
           placeHolder="Search by city delhi..."
           onSubmit={handleSearchSubmit}
