@@ -9,3 +9,13 @@ FoodiFy is a full-featured food delivery application built using the MERN stack.
 * Efficient Browsing: Includes pagination and sorting for large restaurant lists.
 * Seamless Checkout: Detailed restaurant pages with cart functionality for a smooth checkout process.
 
+# Technologies Used
+## Frontend: React, TypeScript, ShadCN UI, Tailwind CSS
+### Backend: Node.js, Express
+### Database: MongoDB
+## Authentication: Auth0
+
+# Responsibilities
+Integrated Auth0: Implemented secure user authentication and authorization.
+Created Responsive Layouts: Developed responsive layouts using ShadCN UI and Tailwind CSS.
+Implemented Features: Added restaurant search, filtering, sorting, and pagination functionalities.
